@@ -163,22 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
-});
 
-// Burger animation toggle
-const burgerToggle = () => {
-    const burger = document.querySelector('.burger');
-    if (burger) {
-        burger.addEventListener('click', () => {
-            burger.classList.toggle('toggle');
-        });
-    }
-};
-
-// Initialize on page load
-window.onload = function() {
-    burgerToggle();
-    
     // Add loaded class for initial animations
     document.body.classList.add('loaded');
-};
+});
