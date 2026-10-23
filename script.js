@@ -11,12 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
         burger.addEventListener('click', function() {
             // Toggle navigation
             navLinks.classList.toggle('nav-active');
+            burger.setAttribute('aria-expanded', String(navLinks.classList.contains('nav-active')));
             
             // Burger animation
             burger.classList.toggle('toggle');
             
             // Toggle burger lines
-            const lines = burger.querySelectorAll('div');
+            const lines = burger.querySelectorAll('span');
             lines.forEach(line => {
                 line.classList.toggle('toggle');
             });
@@ -29,9 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navLinks.classList.contains('nav-active')) {
                 navLinks.classList.remove('nav-active');
                 burger.classList.remove('toggle');
+                burger.setAttribute('aria-expanded', 'false');
                 
                 // Remove toggle class from burger lines
-                const lines = burger.querySelectorAll('div');
+                const lines = burger.querySelectorAll('span');
                 lines.forEach(line => {
                     line.classList.remove('toggle');
                 });

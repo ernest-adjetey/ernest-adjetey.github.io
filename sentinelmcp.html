@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelMCP Case Study | Ernest Adjei Adjetey</title>
+    <meta name="description" content="A technical case study of SentinelMCP, an open-source control plane for reliable, safe, secure, and observable AI-agent tool execution.">
+    <link rel="canonical" href="https://ernest-adjetey.github.io/sentinelmcp.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SentinelMCP Case Study | Ernest Adjei Adjetey">
+    <meta property="og:description" content="Architecture, reliability, security, replay, evaluation, and verified local benchmark evidence for SentinelMCP.">
+    <meta property="og:url" content="https://ernest-adjetey.github.io/sentinelmcp.html">
+    <meta property="og:image" content="https://ernest-adjetey.github.io/profile.jpeg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="container" aria-label="Primary navigation">
+            <a class="logo" href="index.html#home">Ernest Adjetey</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#projects" class="active">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="burger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="case-study">
+        <section class="case-hero">
+            <div class="container case-hero-content">
+                <a class="case-back" href="index.html#projects"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Projects</a>
+                <p class="case-eyebrow">Open-Source Systems Project</p>
+                <h1>SentinelMCP</h1>
+                <p class="case-lead">Reliability, safety, security, and observability control plane for AI-agent tool execution.</p>
+                <p class="case-intro">SentinelMCP mediates REST and official MCP calls through one transport-independent execution lifecycle. It is a personal open-source systems project and is not connected to, derived from, or deployed at an employer.</p>
+                <div class="tech-stack case-tech" aria-label="Project technologies">
+                    <span>Python 3.12</span>
+                    <span>FastAPI</span>
+                    <span>Official MCP SDK</span>
+                    <span>PostgreSQL</span>
+                    <span>OpenTelemetry</span>
+                    <span>Prometheus</span>
+                    <span>Grafana</span>
+                    <span>JWT / Ed25519</span>
+                </div>
+                <div class="case-actions">
+                    <a href="https://github.com/ernest-adjetey/SentinelMCP" class="btn primary-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                    <a href="https://github.com/ernest-adjetey/SentinelMCP/blob/main/docs/ARCHITECTURE.md" class="btn secondary-btn" target="_blank" rel="noopener noreferrer">Architecture Docs</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-section" id="problem">
+            <div class="container case-copy">
+                <p class="case-section-number">01</p>
+                <h2>Problem</h2>
+                <p>AI agents can turn a model decision into a real tool call, but the protocol boundary alone does not provide authentication, authorization, schema stability, mutation safety, bounded retries, or durable evidence. SentinelMCP explores how those responsibilities can be composed into one explicit control plane without creating a second execution engine for each transport.</p>
+            </div>
+        </section>
+
+        <section class="case-section case-section-alt" id="architecture">
+            <div class="container case-copy">
+                <p class="case-section-number">02</p>
+                <h2>Architecture</h2>
+                <p>REST and official MCP ingress converge on the same registry, policy, mutation, reliability, validation, audit, and telemetry services. Read calls bypass mutation-only stages.</p>
+                <ol class="architecture-flow" aria-label="SentinelMCP execution flow">
+                    <li>Agent / MCP Client</li>
+                    <li>Authentication</li>
+                    <li>Exact Versioned Contract</li>
+                    <li>Input Validation</li>
+                    <li>Authorization</li>
+                    <li>Mutation Safety</li>
+                    <li>Durable Idempotency</li>
+                    <li>Reliability Controls</li>
+                    <li>Tool Adapter</li>
+                    <li>Output Validation</li>
+                    <li>Audit / Metrics / Traces</li>
+                </ol>
+                <p class="case-note">PostgreSQL stores immutable contracts, confirmation challenges, idempotency state, and audit events. Runtime bindings, rate limits, retry budgets, and circuit state remain process-local in version 0.1.x.</p>
+            </div>
+        </section>
+
+        <section class="case-section" id="engineering">
+            <div class="container case-copy">
+                <p class="case-section-number">03</p>
+                <h2>Hard Engineering Problems</h2>
+                <ul class="case-list">
+                    <li>Exact SemVer contracts and RFC 8785 fingerprints reject silent schema drift and latest-version ambiguity.</li>
+                    <li>Operational bindings are separate from immutable tool contracts, keeping endpoints and credentials out of registry identity.</li>
+                    <li>Mutation confirmation binds the principal, exact tool reference, definition fingerprint, and canonical arguments before an atomic PostgreSQL consume-and-claim transaction.</li>
+                    <li>Ambiguous post-dispatch mutation failures become durable unknown outcomes instead of unsafe automatic retries or an exactly-once claim.</li>
+                    <li>Retries are limited to classified transient read failures and consume one request-wide deadline plus a separate retry budget.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="case-section case-section-alt" id="security">
+            <div class="container case-copy">
+                <p class="case-section-number">04</p>
+                <h2>Security</h2>
+                <p>REST authentication verifies bounded Ed25519 JWTs with an explicit algorithm allowlist, key ID, issuer, audience, expiry, issued-at, and optional not-before checks. Default-deny authorization distinguishes reads from mutations, supports role and scope conditions, and gives explicit deny precedence.</p>
+                <p>Outbound HTTP requires HTTPS by default, can enforce an exact host allowlist, validates every DNS answer, rejects non-global and transition addresses, refuses redirects, and pins the connection IP while preserving Host and TLS SNI. Public errors omit upstream bodies, database URLs, exception details, stack traces, and local paths.</p>
+            </div>
+        </section>
+
+        <section class="case-section" id="reliability">
+            <div class="container case-copy">
+                <p class="case-section-number">05</p>
+                <h2>Reliability</h2>
+                <p>The executor combines request-wide deadlines, bounded full-jitter read retries, retry budgets, token-bucket admission, and a generation-safe three-state circuit breaker. Mutations require preview and confirmation; completed duplicates recover the persisted result, while conflicts and pending or unknown states never blindly redispatch.</p>
+            </div>
+        </section>
+
+        <section class="case-section case-section-alt" id="observability">
+            <div class="container case-copy">
+                <p class="case-section-number">06</p>
+                <h2>Observability</h2>
+                <p>Payload-free audit events persist to PostgreSQL. OpenTelemetry spans, bounded structured logs, and Prometheus metrics exclude request and response payloads while keeping metric labels finite. This separates durable operational evidence from best-effort traces, logs, and process-local metrics.</p>
+            </div>
+        </section>
+
+        <section class="case-section" id="replay">
+            <div class="container case-copy">
+                <p class="case-section-number">07</p>
+                <h2>Replay</h2>
+                <p>Replay is synthetic-read-only by default, verifies definition fingerprints, reauthorizes against current policy, records an audit event before dispatch, and performs a final binding guard. Local replay files are intentionally constrained and are not presented as encrypted or tamper-proof storage.</p>
+            </div>
+        </section>
+
+        <section class="case-section case-section-alt" id="mcp">
+            <div class="container case-copy">
+                <p class="case-section-number">08</p>
+                <h2>MCP Integration</h2>
+                <p>The official MCP Python SDK exposes reversible exact-version tool names over the same execution services as REST. Trusted in-memory and stdio composition requires an explicit principal. Streamable HTTP bridges the same bearer authenticator and denies unconfigured callers by default.</p>
+            </div>
+        </section>
+
+        <section class="case-section" id="fault-evaluation">
+            <div class="container case-copy">
+                <p class="case-section-number">09</p>
+                <h2>Fault Evaluation</h2>
+                <div class="metric-strip" aria-label="Fault evaluation results">
+                    <div class="metric-item"><strong>23/23</strong><span>expected scenarios matched</span></div>
+                    <div class="metric-item"><strong>8/8</strong><span>tool errors</span></div>
+                    <div class="metric-item"><strong>11/11</strong><span>infrastructure errors</span></div>
+                    <div class="metric-item"><strong>4/4</strong><span>policy and success cases</span></div>
+                </div>
+                <p>The deterministic suite verified normalized error, attribution, and dispatch behavior using injected transports. It does not measure model accuracy, production failure rates, or service levels.</p>
+            </div>
+        </section>
+
+        <section class="case-section case-section-alt" id="performance">
+            <div class="container case-copy">
+                <p class="case-section-number">10</p>
+                <h2>Performance</h2>
+                <p>Profile-guided work identified repeated immutable JSON Schema compilation as the dominant core cost. A bounded validator cache improved the concurrency-1 core path while preserving exact contract validation.</p>
+                <div class="metric-strip" aria-label="Local benchmark results">
+                    <div class="metric-item"><strong>624 to 5,051</strong><span>core requests/s</span></div>
+                    <div class="metric-item"><strong>2.443 to 0.251 ms</strong><span>core p95 latency</span></div>
+                    <div class="metric-item"><strong>1,041 requests/s</strong><span>authenticated REST, 1.160 ms p95</span></div>
+                    <div class="metric-item"><strong>298 requests/s</strong><span>PostgreSQL mutation, 4.414 ms p95</span></div>
+                </div>
+                <p class="case-note"><strong>Local synthetic benchmark:</strong> 26,000 request samples across seven composition paths and five trials per group on Windows 11, Python 3.12.14, PostgreSQL 17.11, and a 22-logical-CPU Intel host. These measurements do not establish production capacity, external-network latency, multi-process scaling, or a service-level objective.</p>
+            </div>
+        </section>
+
+        <section class="case-section" id="testing">
+            <div class="container case-copy">
+                <p class="case-section-number">11</p>
+                <h2>Testing</h2>
+                <div class="metric-strip" aria-label="Release test evidence">
+                    <div class="metric-item"><strong>617</strong><span>tests passed</span></div>
+                    <div class="metric-item"><strong>95.64%</strong><span>branch-aware coverage</span></div>
+                    <div class="metric-item"><strong>58</strong><span>PostgreSQL tests</span></div>
+                    <div class="metric-item"><strong>0</strong><span>skips and warnings</span></div>
+                </div>
+                <p>The release gate also passed Ruff formatting and lint, strict mypy across 128 files, dependency auditing, migrations, package metadata and Markdown-link checks, sdist and wheel inspection, Twine validation, and isolated installed-wheel smoke tests.</p>
+            </div>
+        </section>
+
+        <section class="case-section case-section-alt" id="tradeoffs">
+            <div class="container case-copy">
+                <p class="case-section-number">12</p>
+                <h2>Tradeoffs / Limitations</h2>
+                <ul class="case-list">
+                    <li>The project is a public alpha and reference control plane, not a hosted production deployment.</li>
+                    <li>Reliability coordination and runtime bindings are process-local.</li>
+                    <li>Mutation delivery is not universal exactly-once; a crash after an external effect can require operator reconciliation.</li>
+                    <li>Policy and signing keys are deployment configuration; OIDC/JWKS, revocation, tenant identity, and policy administration are not built in.</li>
+                    <li>Audit records are append-oriented but not cryptographically tamper-proof against a database administrator.</li>
+                </ul>
+                <div class="case-actions case-footer-actions">
+                    <a href="https://github.com/ernest-adjetey/SentinelMCP" class="btn primary-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Explore the Repository</a>
+                    <a href="index.html#projects" class="btn secondary-btn">More Projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ernest Adjei Adjetey. All rights reserved. | Caltech Computer Science & Data Science</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

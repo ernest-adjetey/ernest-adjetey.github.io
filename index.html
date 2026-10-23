@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ernest Adjei Adjetey | Portfolio</title>
+    <title>Ernest Adjei Adjetey | Backend, Systems & AI Infrastructure</title>
+    <meta name="description" content="Portfolio of Ernest Adjei Adjetey, a Caltech Computer Science and Information and Data Science student building backend systems, AI infrastructure, and data platforms.">
+    <link rel="canonical" href="https://ernest-adjetey.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ernest Adjei Adjetey | Backend, Systems & AI Infrastructure">
+    <meta property="og:description" content="Caltech student building reliable backend systems, AI infrastructure, machine learning tools, and data platforms.">
+    <meta property="og:url" content="https://ernest-adjetey.github.io/">
+    <meta property="og:image" content="https://ernest-adjetey.github.io/profile.jpeg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,11 +29,11 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
+            <button class="burger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+            </button>
         </nav>
     </header>
 
@@ -212,6 +219,29 @@
         <div class="container">
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
+                <article class="project-card flagship-project">
+                    <div class="project-content">
+                        <p class="project-eyebrow">Flagship Systems Project</p>
+                        <h3>SentinelMCP</h3>
+                        <p>Reliability, safety, security, and observability control plane for AI-agent tool execution.</p>
+                        <p class="project-evidence">617-test release gate · 95.64% branch-aware coverage · 23/23 deterministic fault scenarios</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>FastAPI</span>
+                            <span>Official MCP SDK</span>
+                            <span>PostgreSQL</span>
+                            <span>OpenTelemetry</span>
+                            <span>Prometheus</span>
+                            <span>Grafana</span>
+                            <span>JWT / Ed25519</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ernest-adjetey/SentinelMCP" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                            <a href="sentinelmcp.html" class="project-link"><i class="fas fa-arrow-right" aria-hidden="true"></i> Case Study</a>
+                        </div>
+                    </div>
+                </article>
+
                 <div class="project-card">
                     <div class="project-content">
                         <h3>TraceQuery</h3>
@@ -225,7 +255,7 @@
                             <span>PostgreSQL</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ernest-adjetey/tracequery" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://github.com/ernest-adjetey/tracequery" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -355,9 +385,9 @@
                         <p>(626) 704-8735</p>
                     </div>
                     <div class="social-links">
-                        <a href="https://github.com/ernest-adjetey"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/ernest-adjetey-084008213"><i class="fab fa-linkedin"></i></a>
-                        <a href="mailto:eadjetey@caltech.edu"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/ernest-adjetey" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/in/ernest-adjetey-084008213" aria-label="LinkedIn profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="mailto:eadjetey@caltech.edu" aria-label="Email Ernest Adjetey"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
