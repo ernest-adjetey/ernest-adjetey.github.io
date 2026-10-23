@@ -11,6 +11,7 @@
     <meta property="og:description" content="Caltech student building reliable backend systems, AI infrastructure, machine learning tools, and data platforms.">
     <meta property="og:url" content="https://ernest-adjetey.github.io/">
     <meta property="og:image" content="https://ernest-adjetey.github.io/profile.jpeg">
+    <link rel="icon" type="image/jpeg" href="profile.jpeg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,7 +19,7 @@
 <body>
     <!-- Navigation -->
     <header>
-        <nav class="container">
+        <nav class="container" aria-label="Primary navigation">
             <div class="logo">Ernest Adjetey</div>
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
@@ -391,18 +392,22 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="mailto:eadjetey@caltech.edu" method="get">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="Your Name" required>
+                            <label class="sr-only" for="name">Your name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" placeholder="Your Email" required>
+                            <label class="sr-only" for="email">Your email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" autocomplete="email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" placeholder="Subject" required>
+                            <label class="sr-only" for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" placeholder="Your Message" required></textarea>
+                            <label class="sr-only" for="message">Your message</label>
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn primary-btn">Send Message</button>
                     </form>

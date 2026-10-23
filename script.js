@@ -115,11 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Simulate form submission (in a real application, you would send this to a server)
-            formStatus.innerHTML = '<p class="form-success">Thank you for your message! I\'ll get back to you soon.</p>';
-            
-            // Reset form
-            contactForm.reset();
+            const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+            const mailtoUrl = `mailto:eadjetey@caltech.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            formStatus.innerHTML = '<p class="form-success">Opening your email app...</p>';
+            window.location.href = mailtoUrl;
             
             // Clear success message after 5 seconds
             setTimeout(() => {
